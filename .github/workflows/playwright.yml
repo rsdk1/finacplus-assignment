@@ -26,6 +26,7 @@ jobs:
 
     env:
       KEY: ${{ secrets.KEY }}
+      REQRES_API_KEY: ${{ secrets.REQRES_API_KEY }}
       BUILD_NO: ${{ github.run_number }}
 
       REPORT_URL: https://rsdk1.github.io/finacplus-assignment/reports-${{ github.run_number }}/index.html
