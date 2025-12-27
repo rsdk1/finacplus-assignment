@@ -37,7 +37,7 @@ test.describe('API assignment: Reqres', () => {
         });
 
         expect(response.status()).toBe(200);
-        log("User created");
+        log("fetched User");
     });
 
     test('Update user', async ({ request }) => {
@@ -54,7 +54,7 @@ test.describe('API assignment: Reqres', () => {
         const body = await response.json();
         expect(body.name).toBe('neo');
 
-        log('User updated successfully:');
+        log('User updated successfully');
     });
 
 });
