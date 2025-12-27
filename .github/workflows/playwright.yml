@@ -1,0 +1,96 @@
+name: FinacPlus Tests
+
+on:
+  workflow_dispatch:
+    inputs:
+      browser:
+        description: "Select browser to run Playwright tests"
+        required: true
+        default: chromium
+        type: choice
+        options:
+          - 'Google Chrome'
+          - 'Microsoft Edge'
+          - 'Firefox'
+      emailTo:
+        description: "Provide an email address to receive the test report"
+        required: true
+        default: 'rs.dk.00001@gmail.com'
+
+permissions:
+  contents: write
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    env:
+      KEY: ${{ secrets.KEY }}
+      BUILD_NO: ${{ github.run_number }}
+
+      REPORT_URL: https://rsdk1.github.io/finacplus-assignment/reports-${{ github.run_number }}/index.html
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - run: npm ci
+
+      - run: npx playwright install --with-deps
+
+      - run: npx playwright test --project=${{ inputs.browser }}
+        continue-on-error: true
+
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report-${{ github.run_number }} and Book Details
+          path:  |
+            playwright-report
+            bookDetails.txt
+
+      - if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          mv playwright-report reports-temp
+
+          git fetch origin reports || true
+          git checkout reports || git checkout -b reports
+
+          mkdir -p reports-${BUILD_NO}
+          mv reports-temp/* reports-${BUILD_NO}/
+
+          git add reports-${BUILD_NO}/
+          git commit -m "Add Playwright report - ${BUILD_NO}" || exit 0
+          git push origin reports
+
+      - if: always()
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 587
+          username: ${{ secrets.EMAIL_USERNAME }}
+          password: ${{ secrets.EMAIL_PASSWORD }}
+          subject: "FinacPlus Playwright Test Report - Build ${{ github.run_number }}"
+          to: ${{ inputs.emailTo }}
+          from: GitHub Actions <${{ secrets.EMAIL_USERNAME }}>
+          body: |
+            Hi,
+
+            The Playwright test execution has completed.
+
+            Build Number: #${{ github.run_number }}
+            Browser: ${{ inputs.browser }}
+
+            Test Report:
+            https://rsdk1.github.io/finacplus-assignment/reports-${{ github.run_number }}/index.html
+
+            Regards,
+            RajaSuma D.K
