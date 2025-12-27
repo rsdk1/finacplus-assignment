@@ -63,7 +63,7 @@ Publisher: ${publisher}
 `;
 
     log("Writing book details into file: bookDetails.txt");
-    fs.writeFileSync('bookDetails.txt', content);
+    fs.writeFileSync('resources/bookDetails.txt', content);
 
     log("Book details written to file successfully");
 

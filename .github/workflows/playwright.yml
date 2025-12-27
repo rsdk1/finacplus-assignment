@@ -52,7 +52,7 @@ jobs:
           name: playwright-report-${{ github.run_number }} and Book Details
           path:  |
             playwright-report
-            bookDetails.txt
+            resources/bookDetails.txt
 
       - if: always()
         run: |
