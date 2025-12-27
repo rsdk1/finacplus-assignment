@@ -1,4 +1,4 @@
-                                         FinacPlus Assignment – UI & AI Test Automation
+    FinacPlus Assignment – UI & AI Test Automation
 
 🚀 Playwright (JavaScript) | UI Automation + API Testing | CI/CD Enabled
 
@@ -20,29 +20,29 @@ __________
 │
 ├── .github
 │   └── workflows
-│       └── playwright.yml
+│       └── playwright.yml (CI pipeline for tests)
 │
 ├── pages
-│   └── booksPage.js
-│   └── loginPage.js
+│   └── booksPage.js (books screen related selectors + action methods)
+│   └── loginPage.js (login related selectors + action methods)
 |
 ├── resources
-│   └── bookDetails.txt
+│   └── bookDetails.txt  (Stored book test data)
 |
 ├── tests
-│   ├── api-testcases.spec.js
-│   └── ui-testcases.spec.js
+│   ├── api-testcases.spec.js  (API automation test cases)
+│   └── ui-testcases.spec.js  (UI end-to-end test cases)
 │
 ├── utils
-│   ├── cryptoUtil.js
-│   └── logger.js
+│   ├── cryptoUtil.js  (Credential encryption/decryption) utility
+│   └── logger.js  (Custom test logging with timestamp)
 │
-├── .env
-├── .gitignore
-├── package-lock.json
-├── package.json
-├── playwright.config.js
-└── README.md
+├── .env (stored encrypted creds + baseurl)
+├── .gitignore (Git ignored files list)
+├── package-lock.json (Locked dependency versions)
+├── package.json (Project dependencies and scripts)
+├── playwright.config.js (Playwright test configuration)
+└── README.md (Project setup and usage)
 ```
 _________
 
