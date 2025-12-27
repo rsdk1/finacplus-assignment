@@ -46,6 +46,10 @@ jobs:
 
       - run: npx playwright test --project="${{ inputs.browser }}"
 
+      - name: Publish Test Summary Results
+        if: always()
+        run: npx github-actions-ctrf ctrf/ctrf-report.json
+
       - if: always()
         uses: actions/upload-artifact@v4
         with:
