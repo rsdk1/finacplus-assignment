@@ -142,7 +142,7 @@ The Playwright test execution workflow can be triggered manually via GitHub Acti
    - `chrome`
    - `edge`
    - `firefox`
-5. Input email for receiving reports:
+5. Input email for receiving reports
 6. Click **Run workflow** to start the execution
 
 ---
