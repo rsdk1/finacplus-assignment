@@ -9,9 +9,9 @@ on:
         default: chromium
         type: choice
         options:
-          - 'Google Chrome'
-          - 'Microsoft Edge'
-          - 'Firefox'
+          - 'chrome'
+          - 'edge'
+          - 'firefox'
       emailTo:
         description: "Provide an email address to receive the test report"
         required: true
@@ -44,8 +44,7 @@ jobs:
 
       - run: npx playwright install --with-deps
 
-      - run: npx playwright test --project=${{ inputs.browser }}
-        continue-on-error: true
+      - run: npx playwright test --project="${{ inputs.browser }}"
 
       - if: always()
         uses: actions/upload-artifact@v4

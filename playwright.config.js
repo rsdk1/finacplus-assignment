@@ -31,15 +31,15 @@ export default defineConfig({
   /* Configure projects for major browsers */
   projects: [
     {
-      name: 'Microsoft Edge',
+      name: 'edge',
       use: { ...devices['Desktop Edge'], channel: 'msedge' },
     },
     {
-      name: 'Google Chrome',
+      name: 'chrome',
       use: { ...devices['Desktop Chrome'], channel: 'chrome' },
     },
     {
-      name: 'Firefox',
+      name: 'firefox',
       use: { ...devices['Desktop Firefox'] },
     }
     
