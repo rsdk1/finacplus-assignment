@@ -136,7 +136,7 @@ The Playwright test execution workflow can be triggered manually via GitHub Acti
 
 ### Steps
 1. Navigate to the **Actions** tab in the repository
-2. Select the **Playwright Automation Tests** workflow
+2. Select the **FinacPlus Tests** workflow
 3. Click **Run workflow**
 4. Choose a browser from the dropdown:
    - `chrome`
